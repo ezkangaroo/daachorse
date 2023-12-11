@@ -8,6 +8,7 @@ use core::mem;
 use core::num::NonZeroU32;
 
 use alloc::vec::Vec;
+use serde::{Serialize, Deserialize};
 
 use crate::errors::Result;
 use crate::serializer::{Serializable, SerializableVec};
@@ -54,7 +55,7 @@ const DEAD_STATE_IDX: u32 = 1;
 ///
 /// - [`CharwiseDoubleArrayAhoCorasick::with_values`] builds an automaton
 ///   from a set of pairs of a UTF-8 string and a user-defined value.
-#[derive(Clone, Eq, Hash, PartialEq)]
+#[derive(Clone, Eq, Hash, PartialEq, Serialize, Deserialize)]
 pub struct CharwiseDoubleArrayAhoCorasick<V> {
     states: Vec<State>,
     mapper: CodeMapper,
@@ -759,7 +760,7 @@ impl<V> CharwiseDoubleArrayAhoCorasick<V> {
     }
 }
 
-#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
 struct State {
     base: Option<NonZeroU32>,
     check: u32,

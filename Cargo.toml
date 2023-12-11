@@ -17,6 +17,7 @@ categories = ["text-processing", "algorithms", "data-structures", "no-std"]
 exclude = [".*"]
 
 [dependencies]
+serde = { version = "1.0", features = ["derive"] }
 
 [dev-dependencies]
 

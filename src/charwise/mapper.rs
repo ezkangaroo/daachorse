@@ -1,4 +1,5 @@
 use alloc::vec::Vec;
+use serde::{Serialize, Deserialize};
 
 use crate::serializer::{Serializable, SerializableVec};
 
@@ -6,7 +7,7 @@ use crate::utils::FromU32;
 
 pub const INVALID_CODE: u32 = u32::MAX;
 
-#[derive(Default, Clone, Debug, Eq, Hash, PartialEq)]
+#[derive(Default, Clone, Debug, Eq, Hash, PartialEq, Serialize, Deserialize)]
 pub struct CodeMapper {
     table: Vec<u32>,
     alphabet_size: u32,
