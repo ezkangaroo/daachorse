@@ -1,4 +1,5 @@
 use alloc::vec::Vec;
+use serde::{Serialize, Deserialize};
 
 use crate::serializer::Serializable;
 
@@ -27,7 +28,7 @@ impl TryFrom<u32> for U24 {
     }
 }
 
-#[derive(Clone, Copy, Default, Eq, PartialEq, Debug, Hash)]
+#[derive(Clone, Copy, Default, Eq, PartialEq, Debug, Hash, Serialize, Deserialize)]
 pub struct U24nU8(u32);
 
 impl U24nU8 {

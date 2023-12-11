@@ -7,6 +7,7 @@ use core::mem;
 use core::num::NonZeroU32;
 
 use alloc::vec::Vec;
+use serde::{Serialize, Deserialize};
 
 use crate::build_helper::BuildHelper;
 use crate::errors::{DaachorseError, Result};
@@ -49,7 +50,7 @@ const DEAD_STATE_IDX: u32 = 1;
 ///
 /// The maximum number of patterns is limited to 2^24-1. If a larger number of patterns is given,
 /// [`DaachorseError`] will be reported.
-#[derive(Clone, Eq, Hash, PartialEq)]
+#[derive(Clone, Eq, Hash, PartialEq, Serialize, Deserialize)]
 pub struct DoubleArrayAhoCorasick<V> {
     states: Vec<State>,
     outputs: Vec<Output<V>>,
@@ -706,7 +707,7 @@ impl<V> DoubleArrayAhoCorasick<V> {
     }
 }
 
-#[derive(Clone, Copy, Default, Eq, Hash, PartialEq)]
+#[derive(Clone, Copy, Default, Eq, Hash, PartialEq, Serialize, Deserialize)]
 struct State {
     base: Option<NonZeroU32>,
     fail: u32,
